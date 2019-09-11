@@ -45,3 +45,17 @@ for f in csv_files:
             "./observed_qc/missing_value/month/",
         )
 
+        plot_box_dist.box_and_hist_plot(
+            df1.dropna(),
+            temp_ind,
+            xlabel="temperature",
+            title=title,
+            directory="./observed_qc/box_dist/temperature/"
+        )
+        plot_box_dist.box_and_hist_plot(
+            df1.dropna(),
+            prcp_ind,
+            xlabel="PRCP",
+            title=title,
+            directory="./observed_qc/box_dist/prcp/"
+        )
