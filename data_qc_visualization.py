@@ -8,6 +8,7 @@ import my_data_qc_lib.plot_missing_heatmap as plot_missing_heatmap
 import my_data_qc_lib.plot_box_dist as plot_box_dist
 import my_data_qc_lib.mask_greater_than as mask_err
 import my_data_qc_lib.mask_outlier as mask_outlier
+import my_data_qc_lib.plot_outlier as plot_outlier
 
 temp_ind = ["TAVG", "TMAX", "TMIN"]
 prcp_ind = ["PRCP"]
@@ -34,6 +35,7 @@ def visualize():
         df1 = df[(df[date_col] >= start_date) & (df[date_col] <= end_date)]
         # assign date column as index
         df1.index = df1[date_col]
+        dropna_df1 = df1.dropna()
 
         if not (df1.empty):
             monthly_missing = count_missing.count_missing_monthly(
@@ -54,18 +56,27 @@ def visualize():
             )
 
             plot_box_dist.box_and_hist_plot(
-                df1.dropna(),
+                dropna_df1,
                 temp_ind,
                 xlabel="temperature",
                 title=title,
                 directory="./observed_qc/box_dist/temperature/",
             )
             plot_box_dist.box_and_hist_plot(
-                df1.dropna(),
+                dropna_df1,
                 prcp_ind,
                 xlabel="PRCP",
                 title=title,
                 directory="./observed_qc/box_dist/prcp/",
+            )
+
+            outlier_dict = {}
+            output_directory = "./observed_qc/outlier/Visualization/"
+            for ind in temp_ind:
+                outlier = mask_outlier.mask_outlier_by_std(dropna_df1, ind)
+                outlier_dict[ind] = outlier
+            plot_outlier.plot_outlier(
+                dropna_df1, temp_ind, date_col, outlier_dict, title, output_directory
             )
 
 
