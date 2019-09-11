@@ -7,6 +7,7 @@ import my_data_qc_lib.count_missing as count_missing
 import my_data_qc_lib.plot_missing_heatmap as plot_missing_heatmap
 import my_data_qc_lib.plot_box_dist as plot_box_dist
 import my_data_qc_lib.mask_greater_than as mask_err
+import my_data_qc_lib.mask_outlier as mask_outlier
 
 temp_ind = ["TAVG", "TMAX", "TMIN"]
 prcp_ind = ["PRCP"]
@@ -96,6 +97,11 @@ def mask_csv():
             concat_err = concat_err.drop_duplicates()
             concat_err.to_csv(output_directory+f, index=False)
 
+        output_directory = "./observed_qc/outlier/"
+        for ind in temp_ind:
+            outlier = mask_outlier.mask_outlier_by_std(df1, ind)
+            if not(outlier.empty):
+                outlier.to_csv(f"{output_directory}{ind}/{f}", index=False)
 
 if __name__ == "__main__":
     # visualize()
