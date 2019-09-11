@@ -35,7 +35,7 @@ def visualize():
         # assign date column as index
         df1.index = df1[date_col]
 
-        if df1.shape[0] > 0:
+        if not (df1.empty):
             monthly_missing = count_missing.count_missing_monthly(
                 df1[prcp_ind + temp_ind]
             )
@@ -91,18 +91,19 @@ def mask_csv():
 
         output_directory = "./observed_qc/error_val/"
 
-        if not(concat_err.empty):
-            concat_err['DATE'] = pd.to_datetime(concat_err['DATE'])
-            concat_err = concat_err.sort_values(by=['DATE'])
+        if not (concat_err.empty):
+            concat_err["DATE"] = pd.to_datetime(concat_err["DATE"])
+            concat_err = concat_err.sort_values(by=["DATE"])
             concat_err = concat_err.drop_duplicates()
-            concat_err.to_csv(output_directory+f, index=False)
+            concat_err.to_csv(output_directory + f, index=False)
 
         output_directory = "./observed_qc/outlier/"
         for ind in temp_ind:
             outlier = mask_outlier.mask_outlier_by_std(df1, ind)
-            if not(outlier.empty):
+            if not (outlier.empty):
                 outlier.to_csv(f"{output_directory}{ind}/{f}", index=False)
 
+
 if __name__ == "__main__":
-    # visualize()
+    visualize()
     mask_csv()
