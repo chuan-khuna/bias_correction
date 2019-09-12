@@ -5,6 +5,22 @@
 
 ## `/observed_qc`
 folder สำหรับเก็บการพล็อต missing value ของ observed data ที่มาจากการรันไฟล์ `missing_plot.py`
+```
+/observed_qc
+|- box_dist
+  |- prcp (*.jpg)
+  |- temperature (*.jpg)
+|- error_val (เก็บ *.csv ไม่สอดคล้อง)
+|- missing_value
+  |- month
+  |- monthly
+|- outlier
+  |- TAVG (*.csv)
+  |- TMAX (*.csv)
+  |- TMIN (*.csv)
+  |- Visualization  (*.jpg)
+```
+
 
 ## `/RCM`
 ```
