@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 sns.set_style("whitegrid")
 sns.set_palette(sns.color_palette("muted"))
-sns.set_context("paper", font_scale=1.0, rc={"lines.linewidth": 0.85, "lines.markersize": 5})
+sns.set_context("paper", font_scale=1.0, rc={"lines.linewidth": 0.75, "lines.markersize": 3})
 
 DPI = 200
 FIGSIZE = (8, 5)
