@@ -37,7 +37,7 @@ def visualize():
         df1.index = df1[date_col]
         dropna_df1 = df1.dropna()
 
-        if not (df1.empty):
+        if not (dropna_df1.empty):
             monthly_missing = count_missing.count_missing_monthly(
                 df1[prcp_ind + temp_ind]
             )
@@ -100,7 +100,7 @@ def mask_csv():
         tmin_tmax = mask_err.greater_than(df1, "TMIN", "TMAX")
         concat_err = pd.concat([tavg_tmax, tmin_tavg, tmin_tmax])
 
-        output_directory = "./observed_qc/error_val/"
+        output_directory = "./observed_qc/inconsistency/"
 
         if not (concat_err.empty):
             concat_err["DATE"] = pd.to_datetime(concat_err["DATE"])

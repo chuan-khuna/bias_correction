@@ -33,4 +33,4 @@ def box_and_hist_plot(dataframe, columns_list, xlabel, title, directory):
     sns.boxplot(data=dataframe[columns_list], ax=axs[0], orient='h')
     axs[1].legend()
     axs[1].set_xlabel(xlabel)
-    fig.savefig(f"./{directory}/{title}_box_hist.jpg", dpi=DPI)
+    fig.savefig(f"./{directory}/{title}.jpg", dpi=DPI)

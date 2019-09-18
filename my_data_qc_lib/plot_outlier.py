@@ -37,4 +37,4 @@ def plot_outlier(dataframe, col_list, x_col, outlier_dict, title, directory):
             ax=axs[i],
         )
     fig.suptitle(title, fontsize=14)
-    fig.savefig(f"./{directory}/{title}_outlier.jpg", dpi=DPI)
+    fig.savefig(f"./{directory}/{title}.jpg", dpi=DPI)
