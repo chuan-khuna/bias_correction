@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import os
+import warnings
+warnings.filterwarnings("ignore")
 
 # my lib
 import my_data_qc_lib.count_missing as count_missing
@@ -9,6 +11,7 @@ import my_data_qc_lib.plot_box_dist as plot_box_dist
 import my_data_qc_lib.mask_greater_than as mask_err
 import my_data_qc_lib.mask_outlier as mask_outlier
 import my_data_qc_lib.plot_outlier as plot_outlier
+import concat_img_to_pdf
 
 temp_ind = ["TAVG", "TMAX", "TMIN"]
 prcp_ind = ["PRCP"]
@@ -46,12 +49,12 @@ def visualize():
             )
             plot_missing_heatmap.plot_missing_heatmap(
                 monthly_missing,
-                title + "_monthly_missing",
+                title,
                 "./observed_qc/missing_value/monthly/",
             )
             plot_missing_heatmap.plot_missing_heatmap(
                 month_missing,
-                title + "_month_missing",
+                title,
                 "./observed_qc/missing_value/month/",
             )
 
@@ -118,3 +121,4 @@ def mask_csv():
 if __name__ == "__main__":
     visualize()
     mask_csv()
+    concat_img_to_pdf.concat()

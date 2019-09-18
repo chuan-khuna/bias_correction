@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 
 sns.set_style("whitegrid")
 sns.set_palette(sns.color_palette("muted"))
-sns.set_context("paper", font_scale=1.0, rc={"lines.linewidth": 1.0})
+sns.set_context("paper", font_scale=1.0, rc={"lines.linewidth": 0.85, "lines.markersize": 5})
 
 DPI = 200
-FIGSIZE = (8, 8)
+FIGSIZE = (8, 5)
 COLOR_MAP = "Spectral_r"
 
 
