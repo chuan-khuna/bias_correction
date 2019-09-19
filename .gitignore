@@ -4,3 +4,5 @@
 *.csv
 *.png
 .Rproj.user/
+.RData
+.Rhistory

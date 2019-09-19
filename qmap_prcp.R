@@ -1,5 +1,7 @@
 library(dplyr)
 library(ggplot2)
+library(tidyverse)
+library(qmap)
 
 obs <- read_csv("./observed/CHIANG_RAI_TH_TH000048303_1951-2019.csv", 
                 col_types = cols(TAVG = col_double(),
@@ -18,12 +20,12 @@ mod <- mod %>% mutate(tasmax=tasmax-273.15)
 mod <- mod %>% mutate(pr=pr*86400)
 
 # find RCM min grid center from station
-obs_lat <- as.numeric(unique(obs['LATITUDE']))
-obs_lon <- as.numeric(unique(obs['LONGITUDE']))
-mod_lats <- unique(mod['lat'])
-mod_lons <- unique(mod['lon'])
-grid_lat <- as.numeric(mod_lats[which(abs(mod_lats-obs_lat) == min(abs(mod_lats-obs_lat))), 1])
-grid_lon <- as.numeric(mod_lons[which(abs(mod_lons-obs_lon) == min(abs(mod_lons-obs_lon))), 1])
+obs_lat <- unique(obs$LATITUDE)
+obs_lon <- unique(obs$LONGITUDE)
+mod_lats <- unique(mod$lat)
+mod_lons <- unique(mod$lon)
+grid_lat <- mod_lats[which.min(abs(mod_lats-obs_lat))]
+grid_lon <- mod_lons[which.min(abs(mod_lons-obs_lon))]
 
 
 # cleansing RCM model and observed data
