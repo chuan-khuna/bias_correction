@@ -2,6 +2,8 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(qmap)
+library(plyr)
+library(EnvStats)
 
 obs <- read_csv("./observed/CHIANG_RAI_TH_TH000048303_1951-2019.csv", 
                 col_types = cols(TAVG = col_double(),
@@ -35,9 +37,17 @@ obs_clean <- obs_clean %>% filter(DATE >= "1970-01-01", DATE <= "2005-12-01")
 mod_clean <- mod %>% filter(lat==grid_lat, lon==grid_lon)
 mod_clean <- mod_clean %>% subset(date %in% obs_clean$DATE)
 
-obs.train <- obs_clean %>% filter(DATE < "2000-01-01")
-mod.train <- mod_clean %>% filter(date < "2000-01-01")
-obs.test <- obs_clean %>% filter(DATE >= "2000-01-01")
-mod.test <- mod_clean %>% filter(date >= "2000-01-01")
+obs_train <- obs_clean %>% filter(DATE < "2000-01-01")
+mod_train <- mod_clean %>% filter(date < "2000-01-01")
+obs_test <- obs_clean %>% filter(DATE >= "2000-01-01")
+mod_test <- mod_clean %>% filter(date >= "2000-01-01")
 
-qm <- fitQmap(obs.train$PRCP, mod.train$pr)
+# Select index
+mod_ind <- 'pr'
+obs_ind <- 'PRCP'
+
+# Qmap Empirical Quantile mapping
+qm <- fitQmapQUANT(obs_train[, obs_ind], mod_train[, mod_ind])
+
+mod_train_corrected <- doQmap(mod_train[, mod_ind], qm)
+mod_test_corrected <- doQmap(mod_test[, mod_ind], qm)
