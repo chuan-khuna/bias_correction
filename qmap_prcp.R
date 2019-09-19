@@ -1,16 +1,16 @@
-library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(qmap)
-library(plyr)
+library(hydroGOF)
 library(EnvStats)
 
 obs <- read_csv("./observed/CHIANG_RAI_TH_TH000048303_1951-2019.csv", 
-                col_types = cols(TAVG = col_double(),
-                                 TMIN = col_double(),
-                                 TMAX = col_double(),
-                                 PRCP = col_double()
-                                 )
+                col_types = cols(
+                                  TAVG = col_double(),
+                                  TMIN = col_double(),
+                                  TMAX = col_double(),
+                                  PRCP = col_double()
+                                )
                 )
 mod <- read_csv("./RCM/RCM_hist_TH.csv")
 
@@ -47,7 +47,18 @@ mod_ind <- 'pr'
 obs_ind <- 'PRCP'
 
 # Qmap Empirical Quantile mapping
-qm <- fitQmapQUANT(obs_train[, obs_ind], mod_train[, mod_ind])
+qm <- fitQmapSSPLIN(obs_train[, obs_ind], mod_train[, mod_ind], 
+                  qstep=0.001)
 
 mod_train_corrected <- doQmap(mod_train[, mod_ind], qm)
 mod_test_corrected <- doQmap(mod_test[, mod_ind], qm)
+
+print(sprintf("Train: %f", mae(mod_train[, mod_ind], obs_train[, obs_ind])))
+print(sprintf("Train bias corrected: %f", mae(mod_train_corrected, obs_train[, obs_ind])))
+
+print(sprintf("Test: %f", mae(mod_test[, mod_ind], obs_test[, obs_ind])))
+print(sprintf("Test bias corrected: %f", mae(mod_test_corrected, obs_test[, obs_ind])))
+
+
+summary(obs_test %>% dplyr::select(DATE:TMIN))
+summary(mod_test %>% dplyr::select(tas:pr))
