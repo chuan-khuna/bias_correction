@@ -12,6 +12,7 @@ import my_data_qc_lib.mask_greater_than as mask_err
 import my_data_qc_lib.mask_outlier as mask_outlier
 import my_data_qc_lib.plot_outlier as plot_outlier
 import concat_img_to_pdf
+import concat_csv
 
 temp_ind = ["TAVG", "TMAX", "TMIN"]
 prcp_ind = ["PRCP"]
@@ -119,6 +120,7 @@ def mask_csv():
 
 
 if __name__ == "__main__":
-    visualize()
-    mask_csv()
-    concat_img_to_pdf.concat()
+    # visualize()
+    # mask_csv()
+    # concat_img_to_pdf.concat()
+    concat_csv.concat_csv()
