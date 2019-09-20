@@ -15,14 +15,14 @@ folder สำหรับเก็บการพล็อต missing value ข�
   |- temperature (*.jpg)
 |- inconsistency (เก็บ *.csv ไม่สอดคล้อง)
 |- missing_value
-  |- month
-  |- monthly
+  |- month (*.jpg)
+  |- monthly (*.jpg)
 |- outlier
   |- TAVG (*.csv)
   |- TMAX (*.csv)
   |- TMIN (*.csv)
   |- Visualization  (*.jpg)
-|- pdf_summary_qc (เก็บไฟล์ pdf รวมรูปภาพที่พล็อตไว้)
+|- summary_qc (เก็บไฟล์ pdf, csv แบบสรุปทุกสถานี)
 ```
 
 ## `/RCM`
