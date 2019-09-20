@@ -13,7 +13,7 @@ folder สำหรับเก็บการพล็อต missing value ข�
 |- box_dist
   |- prcp (*.jpg)
   |- temperature (*.jpg)
-|- error_val (เก็บ *.csv ไม่สอดคล้อง)
+|- inconsistency (เก็บ *.csv ไม่สอดคล้อง)
 |- missing_value
   |- month
   |- monthly
