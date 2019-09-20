@@ -120,7 +120,7 @@ def mask_csv():
 
 
 if __name__ == "__main__":
-    # visualize()
-    # mask_csv()
-    # concat_img_to_pdf.concat()
+    visualize()
+    mask_csv()
+    concat_img_to_pdf.concat()
     concat_csv.concat_csv()
