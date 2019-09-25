@@ -10,7 +10,7 @@ def concat():
         "./observed_qc/outlier/Visualization/"
     ]
 
-    output_path = "./observed_qc/pdf_summary_qc/"
+    output_path = "./observed_qc/summary_qc/"
 
     output_pdf_names = [
         "prpcp_boxplot.pdf",
