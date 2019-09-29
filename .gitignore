@@ -1,8 +1,8 @@
 *.pyc
 *.ipynb
 .ipynb_checkpoints/
-*.csv
 *.png
 .Rproj.user/
 .RData
 .Rhistory
+*.csv

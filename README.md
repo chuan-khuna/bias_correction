@@ -4,6 +4,13 @@
 
 ไฟล์ csv มาจาก repository `climate simple plot/station_data`
 
+## `/observed_clean`
+
+ไฟล์ csv ข้อมูลรูปแบบใหม่ จัด column ตามสถานี เพื่อความง่ายในการเรียกใช้งาน?
+
+ไฟล์ csv มาจาก repository `climate simple plot/station_data`
+
+
 ## `/observed_qc`
 
 folder สำหรับเก็บการพล็อต missing value ของ observed data ที่มาจากการรันไฟล์ `missing_plot.py`
